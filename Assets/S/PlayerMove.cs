@@ -9,15 +9,21 @@ private float speed = 5;
 
 public Rigidbody rb;
 
+private Vector3 direction;
+
+    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void FixedUpdate() 
+    void Update() 
     {
-        Vector3 direction = Vector3.zero;
+        direction = Vector3.zero;
 
         if (Keyboard.current[Key.W].isPressed)
         {
             direction += transform.forward;
+
         }
+
         if (Keyboard.current[Key.S].isPressed)
         {
             direction -= transform.forward;
@@ -30,15 +36,19 @@ public Rigidbody rb;
         {
             direction += transform.right;
         }
-        if (Keyboard.current[Key.Space].isPressed)
-        {
-            transform.position += transform.forward * speed * Time.deltaTime;
+      
 
-        }
+
 
         direction = Vector3.ClampMagnitude(direction, 1f);
-        rb.linearVelocity = new Vector3(direction.x * speed, rb.linearVelocity.y, direction.z * speed);
-    
-        
+
     }
+        void FixedUpdate()
+        {
+            rb.linearVelocity = new Vector3(direction.x * speed, rb.linearVelocity.y, direction.z * speed);
+            
+        }
+
+    
 }
+
