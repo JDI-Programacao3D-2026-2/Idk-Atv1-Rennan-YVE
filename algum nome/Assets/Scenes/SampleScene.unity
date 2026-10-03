@@ -1540,6 +1540,7 @@ GameObject:
   - component: {fileID: 1534098093}
   - component: {fileID: 1534098092}
   - component: {fileID: 1534098091}
+  - component: {fileID: 1534098094}
   m_Layer: 3
   m_Name: Arma Inimigo
   m_TagString: Untagged
@@ -1641,6 +1642,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534098089}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1534098094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534098089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 833db10de6b3fa042ae601f7f54a1c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShootPool
+  projectilePrefab: {fileID: 4898560787153393243, guid: de65fd5f7140fa04d8e459529b171569, type: 3}
+  firePoint: {fileID: 2027719565}
+  poolSize: 20
+  currentAmmo: 0
+  isEnemy: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  player: {fileID: 0}
 --- !u!1 &1638934854
 GameObject:
   m_ObjectHideFlags: 0
