@@ -3,15 +3,17 @@ using UnityEngine.AI;
 public class EnemyNavMesh : MonoBehaviour
 {
     public Transform player;
+    public Transform GameObject;
     public NavMeshAgent agent;
     public Transform[] waypoints;
     public LayerMask layerMask;
+    public float losePlayerDistamce = 15f;
 
     // Update is called once per frame
 
     public enum EnemyState
     {
-        WayPatrol, RandomPatrol, Pursuit
+        WayPatrol, RandomPatrol, Pursuit, Fugir
     }
     public EnemyState currentState = EnemyState.WayPatrol;
 
@@ -33,6 +35,9 @@ public class EnemyNavMesh : MonoBehaviour
             case EnemyState.WayPatrol:
                 WayPatrol();
                 break;
+            case EnemyState.Fugir:
+                Fugir();
+                break;
             default:
                 break;
         }
@@ -53,6 +58,11 @@ public class EnemyNavMesh : MonoBehaviour
             agent.SetDestination(player.position);
             transform.LookAt(player);
         }
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (distanceToPlayer > losePlayerDistamce)
+        {
+            ChangeState(EnemyState.WayPatrol);
+        }
     }
     void WayPatrol()
     {
@@ -61,6 +71,53 @@ public class EnemyNavMesh : MonoBehaviour
         {
             int randomIndex = Random.Range(0, waypoints.Length);
             agent.SetDestination(waypoints[randomIndex].position);
+        }
+        SearchPlayer();
+    }
+    void SearchPlayer()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 20f, layerMask))
+        {
+            ChangeState(EnemyState.Pursuit);
+            CallBackup();
+        }
+    }
+    void CallBackup()
+    {
+        EnemyNavMesh[] todosInimigos = FindObjectsByType<EnemyNavMesh>();
+        foreach  (EnemyNavMesh aliado in todosInimigos)
+        {
+            float distancia = Vector3.Distance(transform.position, aliado.transform.position);
+            if (distancia < 10)
+            {
+                aliado.ChangeState(EnemyState.Pursuit);
+            }
+        }
+
+  
+
+    }
+    void Fugir()
+    {
+        if (GameObject != null)
+        {
+            agent.stoppingDistance = 6f;
+            agent.SetDestination(GameObject.position);
+            transform.LookAt(GameObject);
+        }
+        float distanceToGameObject = Vector3.Distance(transform.position, GameObject.position);
+        if (distanceToGameObject > 0.5f)
+        {
+            ChangeState(EnemyState.WayPatrol);
+        }
+
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("GameObject"))
+        {
+            ChangeState(EnemyState.Fugir);
         }
     }
 }
