@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7534774750419428803}
   - component: {fileID: 2773219797830795222}
   - component: {fileID: 2838903926845290821}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: projetil
   m_TagString: GameObject
   m_Icon: {fileID: 0}
@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   speed: 10
+  damage: 25
 --- !u!54 &2838903926845290821
 Rigidbody:
   m_ObjectHideFlags: 0
