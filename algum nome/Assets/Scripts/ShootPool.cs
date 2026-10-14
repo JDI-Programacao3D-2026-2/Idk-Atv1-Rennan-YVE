@@ -56,7 +56,6 @@ public class ShootPool : MonoBehaviour
             Invoke("Reload", 2f);
         }
 
-        //??????
 
 
         if (Mouse.current.leftButton.wasPressedThisFrame)

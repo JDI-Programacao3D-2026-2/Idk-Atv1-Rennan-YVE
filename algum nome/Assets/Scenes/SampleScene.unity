@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 83997419}
   - component: {fileID: 83997421}
   - component: {fileID: 83997420}
+  - component: {fileID: 83997422}
   m_Layer: 3
   m_Name: oto(inimigo)
   m_TagString: Untagged
@@ -310,6 +311,19 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &83997422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83997414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2bbfb50c019821458a19fcc9bf9ad31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHealth: 20
 --- !u!1 &254229312
 GameObject:
   m_ObjectHideFlags: 0
@@ -2593,7 +2607,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 64cb7e42ad56ad04fbe5d314dc3807ff, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

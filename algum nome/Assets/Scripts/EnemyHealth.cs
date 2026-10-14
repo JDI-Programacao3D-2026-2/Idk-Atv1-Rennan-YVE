@@ -14,9 +14,10 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
-        if (currentHealth <= 0f) ;
+        if (currentHealth <= 0)
         {
             Die();
+            Debug.Log("teste");
         }
     }
 
